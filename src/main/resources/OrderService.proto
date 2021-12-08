@@ -1,0 +1,82 @@
+syntax = "proto3";
+option java_multiple_files = true;
+package com.gkg.bridge.poc.proto;
+
+message OrderRequest {
+  string requestId = 1;
+  string order = 2;
+  string login = 3;
+  string platformGroupName = 4;
+  PlatformRequestType platformRequestType = 5;
+  BridgeOrderType bridgeOrderType = 6;
+  OrderSideType platformSide = 7;
+  OrderSideType side = 8;
+  double amount = 9;
+  string platformSymbol = 10;
+  string mainSymbol = 11;
+  string platformSymbolSource = 12;
+  string pricingSymbol = 13;
+  double price = 14;
+  double adjustedPrice = 15;
+  double tp = 16;
+  double adjustedTPPrice = 17;
+  double sl = 18;
+  double adjustedSLPrice = 19;
+  double platformPrice = 20;
+  int32 digits = 21;
+  int32 markUp = 22;
+  double tickSize = 23;
+  double contractSize = 24;
+  int64 timeStamp = 25;
+  int32 serverId = 26;
+
+  enum PlatformRequestType {
+    MARKET_ORDER = 0;
+    LIMIT_ACTIVATION = 1;
+    STOP_ACTIVATION = 2;
+    TP_ACTIVATION = 3;
+    SL_ACTIVATION = 4;
+    IE_ORDER = 5;
+    MARKET_CLOSE_ORDER = 6;
+    MARKET_STOPOUT_ORDER = 7;
+    PRT_UNSPECIFIED = 8;
+  }
+
+  enum BridgeOrderType {
+    MARKET = 0;
+    LIMIT = 1;
+    STOP = 2;
+    BOT_UNSPECIFIED = 3;
+  }
+
+  enum OrderSideType{
+    BUY = 0;
+    SELL = 1;
+    OST_UNSPECIFIED = 2;
+  }
+}
+
+message OrderReply {
+  string replyId = 1;
+  string requestId = 2;
+  string order = 3;
+  string login = 4;
+  int32 serverId = 5;
+  double requestAmount = 6;
+  double executionAmount = 7;
+  string platformSymbol = 8;
+  double executionPrice = 9;
+  OrderReplyStatusType replyStatus = 10;
+  string replyReason = 11;
+  int64 executionTimeStamp = 12;
+
+  enum OrderReplyStatusType{
+    EXECUTED = 0;
+    REJECTED = 1;
+    ORST_UNSPECIFIED = 2;
+  }
+}
+
+service OrderService {
+  rpc processOrder(OrderRequest) returns (OrderReply);
+}

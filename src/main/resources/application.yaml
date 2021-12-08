@@ -1,0 +1,16 @@
+server:
+  port: 8080
+grpc:
+  server:
+    port: 9898
+
+trade:
+  execution:
+    queue:
+      capacity: 5120000
+      spin-policy: spinning
+
+spring:
+  application:
+    name: local-grpc-server
+
