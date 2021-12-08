@@ -15,9 +15,8 @@ public class AsyncConfig {
     public Executor threadPoolTaskExecutor() {
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
         int coreCount = Runtime.getRuntime().availableProcessors();
-        executor.setCorePoolSize(coreCount);
         executor.setMaxPoolSize(coreCount);
-        executor.setThreadNamePrefix("Outgoing Thread");
+        executor.setThreadNamePrefix("outgoing-async-thread");
         executor.initialize();
 
         return executor;

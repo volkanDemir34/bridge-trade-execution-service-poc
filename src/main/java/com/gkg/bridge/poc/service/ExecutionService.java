@@ -27,7 +27,7 @@ public class ExecutionService extends Thread {
 
     @PostConstruct
     public void startThread() {
-        setName("TradeExecutorThread");
+        setName("trade-executor-thread");
         start();
     }
 
