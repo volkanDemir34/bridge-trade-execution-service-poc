@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class OutgoingAsyncService {
 
-    int counter = 20;
 
     @Async
     void sendAsync(OrderContext orderResponseContext) {
